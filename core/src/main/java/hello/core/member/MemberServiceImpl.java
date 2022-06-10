@@ -15,4 +15,9 @@ public class MemberServiceImpl implements MemberService{
     public Member fingById(long memberId) {
         return memberRepository.findById(memberId);
     }
+
+    //Test 하기 위해 memberRepository 객체를 반환한다.
+    public MemberRepository getMemberRepository(){
+        return memberRepository;
+    }
 }
