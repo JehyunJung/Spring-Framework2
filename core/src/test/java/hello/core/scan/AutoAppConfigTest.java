@@ -1,11 +1,14 @@
 package hello.core.scan;
 
 import hello.core.AutoAppConfig;
+import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
+import hello.core.member.MemberServiceImpl;
+import hello.core.member.MemoryMemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,9 +28,18 @@ public class AutoAppConfigTest {
                 Object bean = ac.getBean(beanDefinitionName);
                 System.out.println("bean = " + bean);
             }
-
-
-
         }
+    }
+    @Configuration
+    @ComponentScan(
+            basePackages = "hello.core",
+            excludeFilters = @ComponentScan.Filter(type=FilterType.ANNOTATION,classes=Configuration.class)
+    )
+    static class AutoAppConfig{
+        @Bean(name="memoryMemberRepository")
+        public MemberRepository memberRepository(){
+            return new MemoryMemberRepository();
+        }
+
     }
 }
