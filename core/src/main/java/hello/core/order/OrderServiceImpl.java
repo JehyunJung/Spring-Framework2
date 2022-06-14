@@ -5,10 +5,11 @@ import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor 
+//@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
 
     /*private DiscountPolicy discountPolicy = new FixDiscountPolicy();
@@ -29,11 +30,11 @@ public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
-    /*@Autowired
+    @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
-    }*/
+    }
 
 
     @Override
@@ -46,5 +47,9 @@ public class OrderServiceImpl implements OrderService{
     //Test 하기 위해 memberRepository 객체를 반환한다.
     public MemberRepository getMemberRepository(){
         return memberRepository;
+    }
+
+    public DiscountPolicy getDiscountPolicy() {
+        return discountPolicy;
     }
 }

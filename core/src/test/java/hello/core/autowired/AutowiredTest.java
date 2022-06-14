@@ -16,10 +16,10 @@ public class AutowiredTest {
     }
 
     static class TestBean{
-        @Autowired
+        /*@Autowired
         public void setNoBean(Member noBean){
             System.out.println("noBean1 = " + noBean);
-        }
+        }*/
 
         @Autowired(required = false)
         public void setNoBean1(Member noBean1){
