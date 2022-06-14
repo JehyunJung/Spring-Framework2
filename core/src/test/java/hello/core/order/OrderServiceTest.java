@@ -8,6 +8,7 @@ import hello.core.member.MemberServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class OrderServiceTest {
     MemberService memberService;
@@ -28,6 +29,11 @@ public class OrderServiceTest {
         Order order=orderService.createOrder(memberId, "itemA",10000);
         Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
         Assertions.assertThat(order.calculatePrice()).isEqualTo(9000);
+    }
+    @Test
+    void orderServiceImplTest(){
+        OrderServiceImpl orderService = new OrderServiceImpl();
+        orderService.createOrder(1L,"itemA",10000);
     }
 
 }
